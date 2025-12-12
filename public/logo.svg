@@ -1,0 +1,11 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cercle extérieur -->
+  <circle cx="40" cy="40" r="38" stroke="currentColor" stroke-width="1.5" fill="none"/>
+  <!-- Forme de meuble stylisée -->
+  <path d="M28 35 L32 28 L48 28 L52 35 L50 48 L30 48 Z" fill="currentColor" opacity="0.9"/>
+  <!-- Ligne horizontale (étagère) -->
+  <line x1="32" y1="35" x2="48" y2="35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Lignes verticales (pieds) -->
+  <line x1="30" y1="48" x2="30" y2="52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="50" y1="48" x2="50" y2="52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

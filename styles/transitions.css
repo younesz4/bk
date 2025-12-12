@@ -1,0 +1,15 @@
+/* Smooth page transitions without white flashes */
+* {
+  transition: opacity 0.4s ease-out !important;
+}
+
+.page-enter {
+  opacity: 0;
+}
+
+.page-enter-active {
+  opacity: 1;
+}
+
+
+

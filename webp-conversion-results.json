@@ -1,0 +1,618 @@
+[
+  {
+    "original": "a propo hero.jpg",
+    "webp": "a propo hero.webp",
+    "originalSize": 367796,
+    "webpSize": 228068,
+    "reduction": 37.99,
+    "path": "a propo hero.jpg"
+  },
+  {
+    "original": "a propos .jpg",
+    "webp": "a propos .webp",
+    "originalSize": 318091,
+    "webpSize": 163468,
+    "reduction": 48.61,
+    "path": "a propos .jpg"
+  },
+  {
+    "original": "a.jpg",
+    "webp": "a.webp",
+    "originalSize": 493867,
+    "webpSize": 95564,
+    "reduction": 80.65,
+    "path": "a.jpg"
+  },
+  {
+    "original": "atlantic.jpg",
+    "webp": "atlantic.webp",
+    "originalSize": 3834338,
+    "webpSize": 598012,
+    "reduction": 84.4,
+    "path": "atlantic.jpg"
+  },
+  {
+    "original": "chaise.jpg",
+    "webp": "chaise.webp",
+    "originalSize": 253734,
+    "webpSize": 128928,
+    "reduction": 49.19,
+    "path": "chaise.jpg"
+  },
+  {
+    "original": "collectio1.jpg",
+    "webp": "collectio1.webp",
+    "originalSize": 284036,
+    "webpSize": 138602,
+    "reduction": 51.2,
+    "path": "collectio1.jpg"
+  },
+  {
+    "original": "collectio2.jpg",
+    "webp": "collectio2.webp",
+    "originalSize": 269612,
+    "webpSize": 115468,
+    "reduction": 57.17,
+    "path": "collectio2.jpg"
+  },
+  {
+    "original": "collectio3.jpg",
+    "webp": "collectio3.webp",
+    "originalSize": 278531,
+    "webpSize": 126764,
+    "reduction": 54.49,
+    "path": "collectio3.jpg"
+  },
+  {
+    "original": "collectio4.jpg",
+    "webp": "collectio4.webp",
+    "originalSize": 257908,
+    "webpSize": 116322,
+    "reduction": 54.9,
+    "path": "collectio4.jpg"
+  },
+  {
+    "original": "collectio5.jpg",
+    "webp": "collectio5.webp",
+    "originalSize": 382760,
+    "webpSize": 235842,
+    "reduction": 38.38,
+    "path": "collectio5.jpg"
+  },
+  {
+    "original": "collectio6.jpg",
+    "webp": "collectio6.webp",
+    "originalSize": 295529,
+    "webpSize": 145282,
+    "reduction": 50.84,
+    "path": "collectio6.jpg"
+  },
+  {
+    "original": "comatif catalogue (1).pptx (1).jpg",
+    "webp": "comatif catalogue (1).pptx (1).webp",
+    "originalSize": 200795,
+    "webpSize": 140828,
+    "reduction": 29.86,
+    "path": "comatif catalogue (1).pptx (1).jpg"
+  },
+  {
+    "original": "comatif catalogue (1).pptx (2).jpg",
+    "webp": "comatif catalogue (1).pptx (2).webp",
+    "originalSize": 312506,
+    "webpSize": 298380,
+    "reduction": 4.52,
+    "path": "comatif catalogue (1).pptx (2).jpg"
+  },
+  {
+    "original": "comatif catalogue (1).pptx (3).jpg",
+    "webp": "comatif catalogue (1).pptx (3).webp",
+    "originalSize": 262500,
+    "webpSize": 226284,
+    "reduction": 13.8,
+    "path": "comatif catalogue (1).pptx (3).jpg"
+  },
+  {
+    "original": "comatif catalogue (1).pptx (4).jpg",
+    "webp": "comatif catalogue (1).pptx (4).webp",
+    "originalSize": 296413,
+    "webpSize": 277992,
+    "reduction": 6.21,
+    "path": "comatif catalogue (1).pptx (4).jpg"
+  },
+  {
+    "original": "comatif catalogue (1).pptx.jpg",
+    "webp": "comatif catalogue (1).pptx.webp",
+    "originalSize": 339042,
+    "webpSize": 348462,
+    "reduction": -2.78,
+    "path": "comatif catalogue (1).pptx.jpg"
+  },
+  {
+    "original": "console.jpg",
+    "webp": "console.webp",
+    "originalSize": 250171,
+    "webpSize": 129452,
+    "reduction": 48.25,
+    "path": "console.jpg"
+  },
+  {
+    "original": "fauteuil.jpg",
+    "webp": "fauteuil.webp",
+    "originalSize": 343363,
+    "webpSize": 192690,
+    "reduction": 43.88,
+    "path": "fauteuil.jpg"
+  },
+  {
+    "original": "frenorie.jpg",
+    "webp": "frenorie.webp",
+    "originalSize": 340090,
+    "webpSize": 170910,
+    "reduction": 49.75,
+    "path": "frenorie.jpg"
+  },
+  {
+    "original": "hero0.jpg",
+    "webp": "hero0.webp",
+    "originalSize": 6053950,
+    "webpSize": 768038,
+    "reduction": 87.31,
+    "path": "hero0.jpg"
+  },
+  {
+    "original": "heroimage.jpg",
+    "webp": "heroimage.webp",
+    "originalSize": 1858380,
+    "webpSize": 315520,
+    "reduction": 83.02,
+    "path": "heroimage.jpg"
+  },
+  {
+    "original": "heroimg.png",
+    "webp": "heroimg.webp",
+    "originalSize": 3323431,
+    "webpSize": 323872,
+    "reduction": 90.25,
+    "path": "heroimg.png"
+  },
+  {
+    "original": "hotel atlantic.png",
+    "webp": "hotel atlantic.webp",
+    "originalSize": 1028556,
+    "webpSize": 104552,
+    "reduction": 89.84,
+    "path": "hotel atlantic.png"
+  },
+  {
+    "original": "hotel atlantic2.png",
+    "webp": "hotel atlantic2.webp",
+    "originalSize": 1131395,
+    "webpSize": 106752,
+    "reduction": 90.56,
+    "path": "hotel atlantic2.png"
+  },
+  {
+    "original": "hotel atlantic3.png",
+    "webp": "hotel atlantic3.webp",
+    "originalSize": 1278510,
+    "webpSize": 105490,
+    "reduction": 91.75,
+    "path": "hotel atlantic3.png"
+  },
+  {
+    "original": "hotel atlantic4.png",
+    "webp": "hotel atlantic4.webp",
+    "originalSize": 1065234,
+    "webpSize": 81624,
+    "reduction": 92.34,
+    "path": "hotel atlantic4.png"
+  },
+  {
+    "original": "installation professionel.jpg",
+    "webp": "installation professionel.webp",
+    "originalSize": 196869,
+    "webpSize": 84290,
+    "reduction": 57.18,
+    "path": "installation professionel.jpg"
+  },
+  {
+    "original": "k.jpg",
+    "webp": "k.webp",
+    "originalSize": 284173,
+    "webpSize": 43188,
+    "reduction": 84.8,
+    "path": "k.jpg"
+  },
+  {
+    "original": "key.jpg",
+    "webp": "key.webp",
+    "originalSize": 4251625,
+    "webpSize": 515066,
+    "reduction": 87.89,
+    "path": "key.jpg"
+  },
+  {
+    "original": "le keyage.png",
+    "webp": "le keyage.webp",
+    "originalSize": 1188281,
+    "webpSize": 74490,
+    "reduction": 93.73,
+    "path": "le keyage.png"
+  },
+  {
+    "original": "le keyage1.png",
+    "webp": "le keyage1.webp",
+    "originalSize": 1146497,
+    "webpSize": 73560,
+    "reduction": 93.58,
+    "path": "le keyage1.png"
+  },
+  {
+    "original": "le keyage2.png",
+    "webp": "le keyage2.webp",
+    "originalSize": 714451,
+    "webpSize": 46782,
+    "reduction": 93.45,
+    "path": "le keyage2.png"
+  },
+  {
+    "original": "le keyage3.png",
+    "webp": "le keyage3.webp",
+    "originalSize": 480122,
+    "webpSize": 41768,
+    "reduction": 91.3,
+    "path": "le keyage3.png"
+  },
+  {
+    "original": "le keyage4.png",
+    "webp": "le keyage4.webp",
+    "originalSize": 611031,
+    "webpSize": 43008,
+    "reduction": 92.96,
+    "path": "le keyage4.png"
+  },
+  {
+    "original": "menuisier.jpg",
+    "webp": "menuisier.webp",
+    "originalSize": 348456,
+    "webpSize": 135758,
+    "reduction": 61.04,
+    "path": "menuisier.jpg"
+  },
+  {
+    "original": "meuble tv.jpg",
+    "webp": "meuble tv.webp",
+    "originalSize": 395894,
+    "webpSize": 218610,
+    "reduction": 44.78,
+    "path": "meuble tv.jpg"
+  },
+  {
+    "original": "n.jpg",
+    "webp": "n.webp",
+    "originalSize": 447684,
+    "webpSize": 90792,
+    "reduction": 79.72,
+    "path": "n.jpg"
+  },
+  {
+    "original": "nom1.jpg",
+    "webp": "nom1.webp",
+    "originalSize": 5319273,
+    "webpSize": 812796,
+    "reduction": 84.72,
+    "path": "nom1.jpg"
+  },
+  {
+    "original": "nom2.jpg",
+    "webp": "nom2.webp",
+    "originalSize": 3362525,
+    "webpSize": 588310,
+    "reduction": 82.5,
+    "path": "nom2.jpg"
+  },
+  {
+    "original": "nomai.png",
+    "webp": "nomai.webp",
+    "originalSize": 944853,
+    "webpSize": 93114,
+    "reduction": 90.15,
+    "path": "nomai.png"
+  },
+  {
+    "original": "nomai2.png",
+    "webp": "nomai2.webp",
+    "originalSize": 912784,
+    "webpSize": 94036,
+    "reduction": 89.7,
+    "path": "nomai2.png"
+  },
+  {
+    "original": "nomai3.png",
+    "webp": "nomai3.webp",
+    "originalSize": 1129329,
+    "webpSize": 115992,
+    "reduction": 89.73,
+    "path": "nomai3.png"
+  },
+  {
+    "original": "nomai4.png",
+    "webp": "nomai4.webp",
+    "originalSize": 941121,
+    "webpSize": 80090,
+    "reduction": 91.49,
+    "path": "nomai4.png"
+  },
+  {
+    "original": "part1.jpg",
+    "webp": "part1.webp",
+    "originalSize": 327689,
+    "webpSize": 166716,
+    "reduction": 49.12,
+    "path": "part1.jpg"
+  },
+  {
+    "original": "part2.jpg",
+    "webp": "part2.webp",
+    "originalSize": 340002,
+    "webpSize": 150250,
+    "reduction": 55.81,
+    "path": "part2.jpg"
+  },
+  {
+    "original": "part3.jpg",
+    "webp": "part3.webp",
+    "originalSize": 392955,
+    "webpSize": 223150,
+    "reduction": 43.21,
+    "path": "part3.jpg"
+  },
+  {
+    "original": "part4.jpg",
+    "webp": "part4.webp",
+    "originalSize": 325204,
+    "webpSize": 124862,
+    "reduction": 61.61,
+    "path": "part4.jpg"
+  },
+  {
+    "original": "part5.jpg",
+    "webp": "part5.webp",
+    "originalSize": 310645,
+    "webpSize": 134512,
+    "reduction": 56.7,
+    "path": "part5.jpg"
+  },
+  {
+    "original": "projet2.png",
+    "webp": "projet2.webp",
+    "originalSize": 818985,
+    "webpSize": 69032,
+    "reduction": 91.57,
+    "path": "projet2.png"
+  },
+  {
+    "original": "projet3.png",
+    "webp": "projet3.webp",
+    "originalSize": 795487,
+    "webpSize": 44750,
+    "reduction": 94.37,
+    "path": "projet3.png"
+  },
+  {
+    "original": "projet4.png",
+    "webp": "projet4.webp",
+    "originalSize": 893485,
+    "webpSize": 42626,
+    "reduction": 95.23,
+    "path": "projet4.png"
+  },
+  {
+    "original": "r.jpg",
+    "webp": "r.webp",
+    "originalSize": 355035,
+    "webpSize": 45454,
+    "reduction": 87.2,
+    "path": "r.jpg"
+  },
+  {
+    "original": "raff.jpg",
+    "webp": "raff.webp",
+    "originalSize": 2653561,
+    "webpSize": 225388,
+    "reduction": 91.51,
+    "path": "raff.jpg"
+  },
+  {
+    "original": "raffinity2.png",
+    "webp": "raffinity2.webp",
+    "originalSize": 601230,
+    "webpSize": 51148,
+    "reduction": 91.49,
+    "path": "raffinity2.png"
+  },
+  {
+    "original": "raffinity3.png",
+    "webp": "raffinity3.webp",
+    "originalSize": 840449,
+    "webpSize": 55886,
+    "reduction": 93.35,
+    "path": "raffinity3.png"
+  },
+  {
+    "original": "resto.jpg",
+    "webp": "resto.webp",
+    "originalSize": 370227,
+    "webpSize": 266766,
+    "reduction": 27.95,
+    "path": "resto.jpg"
+  },
+  {
+    "original": "savoir faire.jpg",
+    "webp": "savoir faire.webp",
+    "originalSize": 320868,
+    "webpSize": 137148,
+    "reduction": 57.26,
+    "path": "savoir faire.jpg"
+  },
+  {
+    "original": "second hero.jpg",
+    "webp": "second hero.webp",
+    "originalSize": 339673,
+    "webpSize": 254282,
+    "reduction": 25.14,
+    "path": "second hero.jpg"
+  },
+  {
+    "original": "sur mesure.jpg",
+    "webp": "sur mesure.webp",
+    "originalSize": 175150,
+    "webpSize": 70402,
+    "reduction": 59.8,
+    "path": "sur mesure.jpg"
+  },
+  {
+    "original": "swipe1.jpg",
+    "webp": "swipe1.webp",
+    "originalSize": 287837,
+    "webpSize": 132160,
+    "reduction": 54.09,
+    "path": "swipe1.jpg"
+  },
+  {
+    "original": "swipe2.jpg",
+    "webp": "swipe2.webp",
+    "originalSize": 418371,
+    "webpSize": 232550,
+    "reduction": 44.42,
+    "path": "swipe2.jpg"
+  },
+  {
+    "original": "swipe3.jpg",
+    "webp": "swipe3.webp",
+    "originalSize": 379797,
+    "webpSize": 231202,
+    "reduction": 39.12,
+    "path": "swipe3.jpg"
+  },
+  {
+    "original": "swipe4.jpg",
+    "webp": "swipe4.webp",
+    "originalSize": 261071,
+    "webpSize": 146070,
+    "reduction": 44.05,
+    "path": "swipe4.jpg"
+  },
+  {
+    "original": "swipe5.jpg",
+    "webp": "swipe5.webp",
+    "originalSize": 244273,
+    "webpSize": 112628,
+    "reduction": 53.89,
+    "path": "swipe5.jpg"
+  },
+  {
+    "original": "swipe6.jpg",
+    "webp": "swipe6.webp",
+    "originalSize": 444837,
+    "webpSize": 299190,
+    "reduction": 32.74,
+    "path": "swipe6.jpg"
+  },
+  {
+    "original": "swipe7.jpg",
+    "webp": "swipe7.webp",
+    "originalSize": 295454,
+    "webpSize": 145158,
+    "reduction": 50.87,
+    "path": "swipe7.jpg"
+  },
+  {
+    "original": "table basse.jpg",
+    "webp": "table basse.webp",
+    "originalSize": 405566,
+    "webpSize": 253414,
+    "reduction": 37.52,
+    "path": "table basse.jpg"
+  },
+  {
+    "original": "Table dappoint.jpg",
+    "webp": "Table dappoint.webp",
+    "originalSize": 163551,
+    "webpSize": 68792,
+    "reduction": 57.94,
+    "path": "Table dappoint.jpg"
+  },
+  {
+    "original": "tapissier.jpg",
+    "webp": "tapissier.webp",
+    "originalSize": 343100,
+    "webpSize": 221106,
+    "reduction": 35.56,
+    "path": "tapissier.jpg"
+  },
+  {
+    "original": "Untitled design (16).png",
+    "webp": "Untitled design (16).webp",
+    "originalSize": 1189457,
+    "webpSize": 117010,
+    "reduction": 90.16,
+    "path": "Untitled design (16).png"
+  },
+  {
+    "original": "Untitled design (17).png",
+    "webp": "Untitled design (17).webp",
+    "originalSize": 1157688,
+    "webpSize": 94144,
+    "reduction": 91.87,
+    "path": "Untitled design (17).png"
+  },
+  {
+    "original": "v.jpg",
+    "webp": "v.webp",
+    "originalSize": 366062,
+    "webpSize": 61182,
+    "reduction": 83.29,
+    "path": "v.jpg"
+  },
+  {
+    "original": "vert salon.jpg",
+    "webp": "vert salon.webp",
+    "originalSize": 301208,
+    "webpSize": 173470,
+    "reduction": 42.41,
+    "path": "vert salon.jpg"
+  },
+  {
+    "original": "vi.jpg",
+    "webp": "vi.webp",
+    "originalSize": 2717680,
+    "webpSize": 299138,
+    "reduction": 88.99,
+    "path": "vi.jpg"
+  },
+  {
+    "original": "vila1.jpg",
+    "webp": "vila1.webp",
+    "originalSize": 368224,
+    "webpSize": 240416,
+    "reduction": 34.71,
+    "path": "vila1.jpg"
+  },
+  {
+    "original": "visa.png",
+    "webp": "visa.webp",
+    "originalSize": 807339,
+    "webpSize": 62250,
+    "reduction": 92.29,
+    "path": "visa.png"
+  },
+  {
+    "original": "visa2.png",
+    "webp": "visa2.webp",
+    "originalSize": 907308,
+    "webpSize": 66594,
+    "reduction": 92.66,
+    "path": "visa2.png"
+  }
+]

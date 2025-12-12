@@ -1,0 +1,35 @@
+// Add this Invoice model to your existing schema.prisma file
+
+model Invoice {
+  id            String   @id @default(cuid())
+  invoiceNumber String   @unique
+  orderId       String   @unique
+  order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  customerName  String
+  customerEmail String
+  customerPhone String
+  billingAddress Json    // { address: string, city: string, country: string, postalCode?: string }
+  items         Json     // Array of { productName: string, quantity: number, unitPrice: number, total: number }
+  subtotal      Int      // In cents
+  tax           Int      // In cents (default 20%)
+  shipping      Int      // In cents
+  total         Int      // In cents
+  currency      String   @default("EUR")
+  paymentMethod String   // "card" | "cash_on_delivery" | "bank_transfer"
+  pdfUrl        String?
+  status        String   @default("draft") // "draft" | "paid" | "pending" | "cancelled"
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([orderId])
+  @@index([invoiceNumber])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Add this relation to existing Order model:
+// invoice Invoice?
+
+
+
+

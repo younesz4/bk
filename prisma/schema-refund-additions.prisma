@@ -1,0 +1,33 @@
+// Add this Refund model to your existing schema.prisma file
+
+model Refund {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  invoiceId String?
+  invoice   Invoice? @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
+  amount    Int      // Refund amount in cents
+  reason    String
+  status    String   @default("pending") // "pending" | "approved" | "declined" | "processed"
+  method    String   // "original" | "manual" | "cash"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([orderId])
+  @@index([invoiceId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Add this field to existing Order model:
+// refundStatus String @default("none") // "none" | "partial" | "full"
+
+// Add this relation to existing Order model:
+// refunds Refund[]
+
+// Add this relation to existing Invoice model:
+// refunds Refund[]
+
+
+
+

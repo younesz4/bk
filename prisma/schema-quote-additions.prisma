@@ -1,0 +1,79 @@
+// Add these models to your existing schema.prisma file
+
+model Quote {
+  id                  String       @id @default(cuid())
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+  
+  // Customer Information
+  customerName        String
+  email               String
+  phone               String
+  address             String?
+  city                String?
+  country             String       @default("Morocco")
+  
+  // Project Details
+  projectType         String       // residential, commercial, hotel, restaurant
+  budget              String?      // budget range
+  message             String?      // project description
+  
+  // Quote Details
+  status              String       @default("pending") // pending, reviewed, waiting_client, approved, converted, completed, cancelled
+  quoteAmount         Int?         // Quote amount in cents (null until admin sets it)
+  quoteValidUntil     DateTime?    // Quote expiration date
+  adminNotes          String?      // Internal notes
+  
+  // Custom Requirements
+  dimensions          String?      // Custom dimensions
+  materials           String?      // Preferred materials
+  finishes            String?      // Preferred finishes
+  customDetails       String?      // Additional custom requirements
+  
+  // Conversion
+  convertedToOrderId  String?      @unique // If converted to order
+  convertedToOrder    Order?       @relation("QuoteToOrder", fields: [convertedToOrderId], references: [id])
+  convertedAt         DateTime?
+  
+  // Relations
+  quoteItems          QuoteItem[]
+  
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@index([convertedToOrderId])
+}
+
+model QuoteItem {
+  id          String   @id @default(cuid())
+  quoteId     String
+  quote       Quote    @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  
+  // Product reference (optional - can be custom)
+  productId   String?
+  product     Product? @relation(fields: [productId], references: [id])
+  
+  // Custom item details
+  itemName    String   // Product name or custom item name
+  description String?  // Item description
+  quantity    Int      @default(1)
+  unitPrice   Int?     // Price per unit in cents (if known)
+  totalPrice  Int?     // Total price in cents (if known)
+  
+  // Custom specifications
+  dimensions  String?  // Item dimensions
+  materials   String?  // Item materials
+  finishes    String?  // Item finishes
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([quoteId])
+  @@index([productId])
+}
+
+// Add this relation to existing Order model:
+// convertedFromQuote  Quote?  @relation("QuoteToOrder")
+
+
+
+

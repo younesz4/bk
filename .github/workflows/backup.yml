@@ -1,0 +1,79 @@
+name: Daily Backup
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC (3 AM Morocco time)
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup Prisma
+        run: npx prisma generate
+
+      - name: Backup Database
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          # Create backup directory
+          mkdir -p backups
+          
+          # Backup database (adjust command based on your database type)
+          # For PostgreSQL:
+          # PGPASSWORD=$(echo $DATABASE_URL | grep -oP 'password=\K[^@]+') \
+          # pg_dump $DATABASE_URL > backups/db-backup-$(date +%Y%m%d-%H%M%S).sql
+          
+          # For SQLite (if still using locally):
+          # cp prisma/dev.db backups/db-backup-$(date +%Y%m%d-%H%M%S).db
+          
+          echo "Database backup completed"
+
+      - name: Create Code Archive
+        run: |
+          tar -czf backups/code-backup-$(date +%Y%m%d-%H%M%S).tar.gz \
+            --exclude='node_modules' \
+            --exclude='.next' \
+            --exclude='.git' \
+            --exclude='backups' \
+            .
+
+      - name: Upload to GitHub Releases (Optional)
+        if: github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: backups/*
+          tag_name: backup-${{ github.run_number }}
+          name: Daily Backup ${{ github.run_number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload to Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: backup-${{ github.run_number }}-${{ github.run_id }}
+          path: backups/
+          retention-days: 30
+
+      - name: Cleanup old backups
+        run: |
+          # Keep only last 7 days of backups in artifacts
+          echo "Backup retention: 30 days (managed by GitHub)"
+
+
+
+

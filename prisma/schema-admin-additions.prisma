@@ -1,0 +1,81 @@
+// Add these models to your existing schema.prisma file
+
+// Update Admin model to include role and additional fields
+// model Admin {
+//   id        String   @id @default(cuid())
+//   email     String   @unique
+//   password  String
+//   role      String   @default("admin") // admin, manager, production, finance, viewer
+//   name      String?
+//   isActive  Boolean  @default(true)
+//   lastLogin DateTime?
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   
+//   activityLogs ActivityLog[]
+//   notifications Notification[]
+// }
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  adminId   String
+  admin     Admin    @relation(fields: [adminId], references: [id])
+  action    String   // login, order_update, product_create, quote_convert, etc.
+  entity    String?  // order, product, quote, category, contact
+  entityId  String?  // ID of the entity
+  details   String?  // JSON string with action details
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  
+  @@index([adminId])
+  @@index([entity, entityId])
+  @@index([createdAt])
+  @@index([action])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  adminId   String?  // null = broadcast to all admins
+  admin     Admin?   @relation(fields: [adminId], references: [id])
+  type      String   // new_order, new_quote, payment_received, cod_confirmation, contact_message
+  title     String
+  message   String
+  link      String?  // URL to related resource
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  
+  @@index([adminId])
+  @@index([isRead])
+  @@index([createdAt])
+  @@index([type])
+}
+
+model ContactMessage {
+  id          String   @id @default(cuid())
+  firstName   String
+  lastName    String
+  email       String
+  phone       String?
+  budget      String?
+  projectType String?
+  message     String
+  status      String   @default("new") // new, read, assigned, resolved, archived
+  assignedTo  String?  // Admin ID
+  notes       String?  // Internal notes
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([status])
+  @@index([assignedTo])
+  @@index([createdAt])
+  @@index([email])
+}
+
+// Add these relations to existing Admin model:
+// activityLogs ActivityLog[]
+// notifications Notification[]
+
+
+
+

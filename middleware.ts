@@ -267,8 +267,8 @@ export async function middleware(request: NextRequest) {
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com", // Allow Google Fonts CSS
     "img-src 'self' data: https: blob:", // Allow images from self, data URIs, HTTPS, and blob
     "font-src 'self' data: https://fonts.gstatic.com", // Allow Google Fonts
-    "connect-src 'self' https://api.stripe.com https://*.stripe.com", // Allow Stripe API
-    "frame-src 'self' https://js.stripe.com", // Allow Stripe iframes
+    "connect-src 'self'", // Stripe removed
+    "frame-src 'self'", // Stripe removed
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",

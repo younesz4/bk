@@ -23,17 +23,21 @@ Sentry.init({
     }
     
     // Remove sensitive data from request
-    if (event.request) {
+    const request = event.request
+    if (request) {
       // Remove sensitive query params
-      if (event.request.query_string) {
-        event.request.query_string = event.request.query_string.replace(
+      if (request.query_string) {
+        const queryStr = typeof request.query_string === 'string'
+          ? request.query_string
+          : new URLSearchParams(request.query_string as any).toString()
+        request.query_string = queryStr.replace(
           /(password|token|api_key|secret)=[^&]*/gi,
           '$1=***'
-        )
+        ) as any
       }
       
       // Remove sensitive headers
-      if (event.request.headers) {
+      if (request.headers) {
         const sensitiveHeaders = [
           'authorization',
           'cookie',
@@ -41,19 +45,21 @@ Sentry.init({
           'x-csrf-token',
           'x-forwarded-for',
         ]
+        const headers = request.headers
         sensitiveHeaders.forEach((header) => {
-          if (event.request.headers[header]) {
-            event.request.headers[header] = '***'
+          if (headers[header]) {
+            headers[header] = '***'
           }
         })
       }
       
       // Remove sensitive data from body
-      if (event.request.data) {
+      if (request.data) {
         const sensitiveFields = ['password', 'token', 'apiKey', 'secret', 'creditCard']
+        const data = request.data
         sensitiveFields.forEach((field) => {
-          if (event.request.data[field]) {
-            event.request.data[field] = '***'
+          if (data && typeof data === 'object' && field in data) {
+            (data as any)[field] = '***'
           }
         })
       }

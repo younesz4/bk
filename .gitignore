@@ -54,3 +54,5 @@ logs
 *.log
 
 .vercel
+
+.vercel

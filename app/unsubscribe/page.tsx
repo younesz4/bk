@@ -5,11 +5,11 @@
 
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
-export default function UnsubscribePage() {
+function UnsubscribePageContent() {
   const searchParams = useSearchParams()
   const email = searchParams.get('email')
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
@@ -95,6 +95,16 @@ export default function UnsubscribePage() {
   )
 }
 
-
+export default function UnsubscribePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-cream-50 pt-32 pb-24 px-6 md:px-8 flex items-center justify-center">
+        <div className="text-lg text-neutral-600">Chargement...</div>
+      </div>
+    }>
+      <UnsubscribePageContent />
+    </Suspense>
+  )
+}
 
 

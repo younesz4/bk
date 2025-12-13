@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -30,7 +30,7 @@ interface Order {
   createdAt: string
 }
 
-export default function OrderSuccessPage() {
+function OrderSuccessContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const orderId = searchParams.get('orderId')
@@ -287,6 +287,20 @@ export default function OrderSuccessPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function OrderSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-cream-50 pt-32 pb-24 px-6 md:px-8 flex items-center justify-center">
+        <div className="text-lg text-neutral-600" style={{ fontFamily: 'var(--font-raleway)' }}>
+          Chargement...
+        </div>
+      </div>
+    }>
+      <OrderSuccessContent />
+    </Suspense>
   )
 }
 

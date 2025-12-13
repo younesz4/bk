@@ -11,6 +11,7 @@ import {
 } from 'framer-motion'
 import Image from 'next/image'
 import { usePathname, useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 import ProjectLink from '@/components/ProjectLink'
 import { projects } from '@/lib/data'
 
@@ -26,7 +27,7 @@ function getTextColor(index: number): string {
   return index % 2 === 0 ? '#FCFBFC' : '#000000'
 }
 
-export default function ProjectsPage() {
+function ProjectsPageContent() {
   const slides = useMemo(
     () =>
       projects.map((p, index) => ({
@@ -412,5 +413,19 @@ export default function ProjectsPage() {
         ))}
       </motion.div>
     </div>
+  )
+}
+
+export default function ProjectsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-cream-50 pt-32 pb-24 px-6 md:px-8 flex items-center justify-center">
+        <div className="text-lg text-neutral-600" style={{ fontFamily: 'var(--font-raleway)' }}>
+          Chargement...
+        </div>
+      </div>
+    }>
+      <ProjectsPageContent />
+    </Suspense>
   )
 }

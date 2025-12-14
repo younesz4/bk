@@ -5,6 +5,8 @@ import AdminTopBar from './components/AdminTopBar'
 import AdminSidebar from './components/AdminSidebar'
 import { headers } from 'next/headers'
 
+// Admin layout with authentication protection
+
 export default async function AdminLayout({ children }: { children: ReactNode }) {
   // Get the current pathname from headers (set by middleware)
   const headersList = await headers()

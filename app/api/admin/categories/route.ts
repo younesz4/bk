@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { authAdmin } from '@/lib/auth/admin'
-import fs from 'fs'
+import * as fs from 'fs'
+import * as path from 'path'
+import { v4 as uuidv4 } from 'uuid'
 
 export const dynamic = 'force-dynamic'
 
@@ -25,6 +27,12 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  // Declare variables at function scope for error handling
+  let uploadedFilePath: string | null = null
+  let name: string = ''
+  let slug: string = ''
+  let imageUrl: string | null = null
+  
   try {
     const isAdmin = await authAdmin()
     if (!isAdmin) {
@@ -35,10 +43,6 @@ export async function POST(request: NextRequest) {
     }
 
     // Handle FormData (for file uploads)
-    let name: string
-    let slug: string
-    let imageUrl: string | null = null
-    let uploadedFilePath: string | null = null
     
     // Try to parse as FormData first (for file uploads)
     try {
@@ -49,9 +53,6 @@ export async function POST(request: NextRequest) {
       
       // Handle image upload
       if (imageFile && imageFile.size > 0) {
-        const path = require('path')
-        const { v4: uuidv4 } = require('uuid')
-        
         const uploadDir = path.join(process.cwd(), 'public/uploads')
         if (!fs.existsSync(uploadDir)) {
           fs.mkdirSync(uploadDir, { recursive: true })

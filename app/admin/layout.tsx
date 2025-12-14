@@ -3,12 +3,28 @@ import { redirect } from 'next/navigation'
 import { verifyAdminSession } from '@/lib/adminAuth'
 import AdminTopBar from './components/AdminTopBar'
 import AdminSidebar from './components/AdminSidebar'
+import { headers } from 'next/headers'
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
-  const session = await verifyAdminSession()
+  // Get the current pathname from headers (set by middleware)
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') || ''
   
-  if (!session) {
-    redirect('/admin/login')
+  // Don't check auth for login page (prevents redirect loop)
+  // If pathname is empty or not set, it might be login page, so skip auth check
+  const isLoginPage = pathname === '/admin/login' || pathname === ''
+  
+  if (!isLoginPage) {
+    const session = await verifyAdminSession()
+    
+    if (!session) {
+      redirect('/admin/login')
+    }
+  }
+  
+  // For login page, just render children without layout
+  if (isLoginPage) {
+    return <>{children}</>
   }
 
   return (

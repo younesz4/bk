@@ -70,8 +70,24 @@ export default function AddCategoryForm() {
     try {
       // Always use FormData for file uploads
       const formDataObj = new FormData()
-      formDataObj.append('name', formData.name.trim())
-      formDataObj.append('slug', formData.slug.trim() || slugify(formData.name.trim()))
+      const trimmedName = formData.name.trim()
+      const trimmedSlug = formData.slug.trim() || slugify(trimmedName)
+      
+      // Ensure we have valid name and slug
+      if (!trimmedName) {
+        setErrors({ name: 'Le nom est requis' })
+        setIsSubmitting(false)
+        return
+      }
+      
+      if (!trimmedSlug) {
+        setErrors({ name: 'Impossible de générer un slug valide' })
+        setIsSubmitting(false)
+        return
+      }
+      
+      formDataObj.append('name', trimmedName)
+      formDataObj.append('slug', trimmedSlug)
       if (imageFile) {
         formDataObj.append('image', imageFile)
       }
@@ -123,7 +139,6 @@ export default function AddCategoryForm() {
             errors.name ? 'border-red-300' : 'border-gray-300'
           }`}
           style={{ fontFamily: 'var(--font-raleway)' }}
-          required
         />
         {errors.name && (
           <p className="mt-1 text-sm text-red-600" style={{ fontFamily: 'var(--font-raleway)' }}>

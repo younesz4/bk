@@ -32,15 +32,28 @@ function CreateCategoryForm() {
     setSlug(slugify(e.target.value))
   }
 
-  const onSubmit = (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     setError(null)
     
-    // Ensure slug is set (auto-generate from name if empty)
-    const nameValue = formData.get('name') as string || name
-    const slugValue = formData.get('slug') as string || slug
-    if (!slugValue && nameValue) {
-      formData.set('slug', slugify(nameValue))
+    // Validate name is not empty
+    if (!name || !name.trim()) {
+      setError('Le nom de la catégorie est obligatoire.')
+      return
     }
+    
+    // Ensure slug is set (auto-generate from name if empty)
+    const finalSlug = slug.trim() || slugify(name.trim())
+    
+    if (!finalSlug) {
+      setError('Le slug généré est invalide.')
+      return
+    }
+    
+    // Create FormData with current state values
+    const formData = new FormData()
+    formData.set('name', name.trim())
+    formData.set('slug', finalSlug)
     
     startTransition(async () => {
       const result = await createCategory(formData)
@@ -54,7 +67,7 @@ function CreateCategoryForm() {
 
   return (
     <form
-      action={onSubmit}
+      onSubmit={handleSubmit}
       className="max-w-xl space-y-8"
     >
       {/* Top intro text */}
@@ -98,7 +111,6 @@ function CreateCategoryForm() {
           id="name"
           name="name"
           type="text"
-          required
           value={name}
           onChange={handleNameChange}
           className="w-full border border-neutral-300 bg-frost px-4 py-2.5 text-sm outline-none focus:border-black focus:ring-1 focus:ring-black rounded-none"

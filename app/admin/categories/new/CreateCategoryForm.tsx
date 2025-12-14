@@ -34,6 +34,14 @@ function CreateCategoryForm() {
 
   const onSubmit = (formData: FormData) => {
     setError(null)
+    
+    // Ensure slug is set (auto-generate from name if empty)
+    const nameValue = formData.get('name') as string || name
+    const slugValue = formData.get('slug') as string || slug
+    if (!slugValue && nameValue) {
+      formData.set('slug', slugify(nameValue))
+    }
+    
     startTransition(async () => {
       const result = await createCategory(formData)
       if (result && result.ok === false && result.error) {
@@ -111,7 +119,6 @@ function CreateCategoryForm() {
           id="slug"
           name="slug"
           type="text"
-          required
           value={slug}
           onChange={handleSlugChange}
           className="w-full border border-neutral-300 bg-frost px-4 py-2.5 text-sm outline-none focus:border-black focus:ring-1 focus:ring-black rounded-none font-mono"

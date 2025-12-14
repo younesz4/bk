@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { authAdmin } from '@/lib/auth/admin'
+import fs from 'fs'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,92 +25,121 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const isAdmin = await authAdmin()
-  if (!isAdmin) {
-    return NextResponse.json(
-      { error: 'Unauthorized' },
-      { status: 401 }
-    )
-  }
-
-  // Handle FormData (for file uploads)
-  let name: string
-  let slug: string
-  let imageUrl: string | null = null
-  
-  // Try to parse as FormData first (for file uploads)
   try {
-    const formData = await request.formData()
-    name = (formData.get('name') as string || '').trim()
-    slug = (formData.get('slug') as string || '').trim()
-    const imageFile = formData.get('image') as File | null
-    
-    // Handle image upload
-    if (imageFile && imageFile.size > 0) {
-      const fs = require('fs')
-      const path = require('path')
-      const { v4: uuidv4 } = require('uuid')
-      
-      const uploadDir = path.join(process.cwd(), 'public/uploads')
-      if (!fs.existsSync(uploadDir)) {
-        fs.mkdirSync(uploadDir, { recursive: true })
-      }
-
-      const arrayBuffer = await imageFile.arrayBuffer()
-      const buffer = Buffer.from(arrayBuffer)
-      const filename = `category-${uuidv4()}-${imageFile.name.replace(/\s+/g, '-')}`
-      const filePath = path.join(uploadDir, filename)
-      fs.writeFileSync(filePath, buffer)
-      
-      imageUrl = '/uploads/' + filename
+    const isAdmin = await authAdmin()
+    if (!isAdmin) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
     }
-  } catch {
-    // Not FormData, try JSON (for backward compatibility)
-    let body
+
+    // Handle FormData (for file uploads)
+    let name: string
+    let slug: string
+    let imageUrl: string | null = null
+    let uploadedFilePath: string | null = null
+    
+    // Try to parse as FormData first (for file uploads)
     try {
-      body = await request.json()
-    } catch {
+      const formData = await request.formData()
+      name = (formData.get('name') as string || '').trim()
+      slug = (formData.get('slug') as string || '').trim()
+      const imageFile = formData.get('image') as File | null
+      
+      // Handle image upload
+      if (imageFile && imageFile.size > 0) {
+        const path = require('path')
+        const { v4: uuidv4 } = require('uuid')
+        
+        const uploadDir = path.join(process.cwd(), 'public/uploads')
+        if (!fs.existsSync(uploadDir)) {
+          fs.mkdirSync(uploadDir, { recursive: true })
+        }
+
+        const arrayBuffer = await imageFile.arrayBuffer()
+        const buffer = Buffer.from(arrayBuffer)
+        const filename = `category-${uuidv4()}-${imageFile.name.replace(/\s+/g, '-')}`
+        const filePath = path.join(uploadDir, filename)
+        fs.writeFileSync(filePath, buffer)
+        uploadedFilePath = filePath
+        imageUrl = '/uploads/' + filename
+      }
+    } catch (parseError) {
+      // Not FormData, try JSON (for backward compatibility)
+      try {
+        const body = await request.json()
+        name = (body.name || '').trim()
+        slug = (body.slug || '').trim()
+        imageUrl = body.imageUrl || null
+      } catch {
+        return NextResponse.json(
+          { error: 'Missing required fields' },
+          { status: 400 }
+        )
+      }
+    }
+
+    if (!name || !slug) {
+      // Clean up uploaded file if validation fails
+      if (uploadedFilePath && fs.existsSync(uploadedFilePath)) {
+        try {
+          fs.unlinkSync(uploadedFilePath)
+        } catch (cleanupError) {
+          // Ignore cleanup errors
+        }
+      }
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
       )
     }
 
-    name = (body.name || '').trim()
-    slug = (body.slug || '').trim()
-    imageUrl = body.imageUrl || null
-  }
+    const existingCategory = await prisma.category.findUnique({
+      where: { slug },
+    })
 
-  if (!name || !slug) {
+    if (existingCategory) {
+      // Clean up uploaded file if category already exists
+      if (uploadedFilePath && fs.existsSync(uploadedFilePath)) {
+        try {
+          fs.unlinkSync(uploadedFilePath)
+        } catch (cleanupError) {
+          // Ignore cleanup errors
+        }
+      }
+      return NextResponse.json(
+        { error: 'Category already exists' },
+        { status: 409 }
+      )
+    }
+
+    const category = await prisma.category.create({
+      data: { 
+        name, 
+        slug,
+        imageUrl: imageUrl || null,
+      },
+    })
+
+    return NextResponse.json({
+      success: true,
+      category,
+    })
+  } catch (error) {
+    // Clean up uploaded file on any error
+    if (uploadedFilePath && fs.existsSync(uploadedFilePath)) {
+      try {
+        fs.unlinkSync(uploadedFilePath)
+      } catch (cleanupError) {
+        // Ignore cleanup errors
+      }
+    }
     return NextResponse.json(
-      { error: 'Missing required fields' },
-      { status: 400 }
+      { error: 'Internal server error' },
+      { status: 500 }
     )
   }
-
-  const existingCategory = await prisma.category.findUnique({
-    where: { slug },
-  })
-
-  if (existingCategory) {
-    return NextResponse.json(
-      { error: 'Category already exists' },
-      { status: 409 }
-    )
-  }
-
-  const category = await prisma.category.create({
-    data: { 
-      name, 
-      slug,
-      imageUrl: imageUrl || null,
-    },
-  })
-
-  return NextResponse.json({
-    success: true,
-    category,
-  })
 }
 
 export async function PUT() {

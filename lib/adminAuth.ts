@@ -27,13 +27,6 @@ export async function createAdminSession(
     .setExpirationTime('7d')
     .sign(secretKey)
 
-  console.log('Setting admin_session cookie:', {
-    hasToken: !!token,
-    tokenLength: token.length,
-    email,
-    secretSet: !!process.env.ADMIN_SESSION_SECRET
-  })
-
   // Set cookie with explicit settings for localhost
   const cookieOptions: any = {
     httpOnly: true,
@@ -51,17 +44,6 @@ export async function createAdminSession(
   }
 
   response.cookies.set(COOKIE_NAME, token, cookieOptions)
-  
-  // Also set it in headers for debugging
-  response.headers.set('X-Set-Cookie', 'admin_session=' + token.substring(0, 20) + '...')
-
-  console.log('Cookie set successfully with options:', {
-    httpOnly: cookieOptions.httpOnly,
-    secure: cookieOptions.secure,
-    sameSite: cookieOptions.sameSite,
-    path: cookieOptions.path,
-    maxAge: cookieOptions.maxAge
-  })
 }
 
 export async function getAdminFromRequest(
@@ -70,16 +52,8 @@ export async function getAdminFromRequest(
   const token = request.cookies.get(COOKIE_NAME)?.value
 
   if (!token) {
-    console.log('No admin_session cookie found')
     return null
   }
-
-  console.log('Attempting to verify token:', {
-    tokenLength: token.length,
-    tokenPreview: token.substring(0, 20) + '...',
-    secretSet: !!ADMIN_SESSION_SECRET,
-    secretLength: ADMIN_SESSION_SECRET.length
-  })
 
   try {
     const secretKey = getSecretKey()
@@ -87,19 +61,12 @@ export async function getAdminFromRequest(
     const email = payload.email as string
     
     if (!email) {
-      console.log('JWT payload missing email:', payload)
       return null
     }
     
-    console.log('Admin session verified successfully:', email)
     return { email }
   } catch (error: any) {
-    console.log('JWT verification failed:', {
-      error: error.message,
-      errorName: error.name,
-      errorCode: error.code,
-      stack: error.stack?.substring(0, 200)
-    })
+    // Silent fail for invalid tokens
     return null
   }
 }
@@ -117,16 +84,8 @@ export async function verifyAdminSession(): Promise<AdminSession | null> {
   const token = cookieStore.get(COOKIE_NAME)?.value
 
   if (!token) {
-    console.log('No admin_session cookie found (Server Component)')
     return null
   }
-
-  console.log('Attempting to verify token (Server Component):', {
-    tokenLength: token.length,
-    tokenPreview: token.substring(0, 20) + '...',
-    secretSet: !!ADMIN_SESSION_SECRET,
-    secretLength: ADMIN_SESSION_SECRET.length
-  })
 
   try {
     const secretKey = getSecretKey()
@@ -134,19 +93,12 @@ export async function verifyAdminSession(): Promise<AdminSession | null> {
     const email = payload.email as string
     
     if (!email) {
-      console.log('JWT payload missing email:', payload)
       return null
     }
     
-    console.log('Admin session verified successfully (Server Component):', email)
     return { email }
   } catch (error: any) {
-    console.log('JWT verification failed (Server Component):', {
-      error: error.message,
-      errorName: error.name,
-      errorCode: error.code,
-      stack: error.stack?.substring(0, 200)
-    })
+    // Silent fail for invalid tokens
     return null
   }
 }

@@ -32,8 +32,6 @@ export default function AdminLogin() {
       }
 
       // Login successful - cookie should be set by server
-      console.log('Login successful, response received')
-      
       // Wait for cookie to be set, then redirect
       // Using replace instead of href to avoid adding to history
       setTimeout(() => {

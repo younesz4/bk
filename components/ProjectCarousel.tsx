@@ -10,34 +10,45 @@ interface ProjectCarouselProps {
 }
 
 export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
-  const CAROUSEL_IMAGES = [
-    '/caro1.jpg',
-    '/caro2.jpg',
-    '/caro3.jpg',
-    '/caro4.jpg',
-    '/caro5.jpg',
-    '/caro6.jpg',
-  ]
+  // derive images from projects so new projects show correct hero image
+  const projectImages = projects.map((p) => p.heroImage ?? p.images?.[0] ?? '/caro1.jpg')
 
-  const speed = 2// same speed on all devices
+  const baseSpeed = 2 // px per frame
+  const speedRef = useRef(baseSpeed)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
+    const updateSpeed = () => {
+      const isDesktop = typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches
+      // slow by an extra 10% on desktop compared to previous adjustment -> total 65% of base
+      speedRef.current = isDesktop ? baseSpeed * 0.65 : baseSpeed
+    }
+
+    updateSpeed()
+    const mql = typeof window !== 'undefined' ? window.matchMedia('(min-width: 1024px)') : null
+    const handler = () => updateSpeed()
+    mql?.addEventListener?.('change', handler)
+    if (mql && !mql.addEventListener) mql.addListener?.(handler)
+
     let x = 0
     const totalWidth = container.scrollWidth / 2
 
     const animate = () => {
-      x -= speed
+      x -= speedRef.current
       if (Math.abs(x) >= totalWidth) x = 0
       container.style.transform = `translateX(${x}px)`
       requestAnimationFrame(animate)
     }
 
     const frame = requestAnimationFrame(animate)
-    return () => cancelAnimationFrame(frame)
+    return () => {
+      cancelAnimationFrame(frame)
+      mql?.removeEventListener?.('change', handler)
+      if (mql && !mql.removeEventListener) mql.removeListener?.(handler)
+    }
   }, [])
 
   return (
@@ -50,40 +61,43 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
           className="flex"
           style={{ width: 'max-content', willChange: 'transform' }}
         >
-          {[...CAROUSEL_IMAGES, ...CAROUSEL_IMAGES].map((src, index) => {
-            const project = projects[index % projects.length]
+          {(() => {
+            const imgs = [...projectImages, ...projectImages]
+            return imgs.map((src, index) => {
+              const project = projects[index % projects.length]
 
-            return (
-              <Link
-                href={`/projets/${project.slug}`}
-                key={index}
-                className="inline-block mx-6 group"
-                style={{
-                  width: 340,
-                  height: 520,
-                }}
-              >
-                <div className="gallery-frame w-full h-full">
-                  <div className="relative w-full h-full overflow-hidden">
-                    <Image
-                      src={src}
-                      alt={project.name}
-                      fill
-                      className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
-                      quality={70}
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      loading="lazy"
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 to-transparent">
-                      <h3 className="text-2xl text-white font-bodoni">
-                        {project.name}
-                      </h3>
+              return (
+                <Link
+                  href={`/projets/${project.slug}`}
+                  key={index}
+                  className="inline-block mx-6 group"
+                  style={{
+                    width: 340,
+                    height: 520,
+                  }}
+                >
+                  <div className="gallery-frame w-full h-full">
+                    <div className="relative w-full h-full overflow-hidden">
+                      <Image
+                        src={src}
+                        alt={project.name}
+                        fill
+                        className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                        quality={70}
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        loading="lazy"
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-2xl text-white font-bodoni">
+                          {project.name}
+                        </h3>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            )
-          })}
+                </Link>
+              )
+            })
+          })()}
         </div>
       </div>
 

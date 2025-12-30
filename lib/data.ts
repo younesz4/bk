@@ -203,14 +203,50 @@ export const projects: Project[] = [
   {
     id: '6',
     slug: 'table3',
-    name: 'Table3',
-    description: 'Agencement sur-mesure pour Table3 Casablanca. Design gastronomique contemporain avec mobilier d\'exception et espaces conviviaux. Ambiance raffinée alliant esthétique moderne et élégance pour une expérience culinaire exceptionnelle.',
+    name: 'Table 3',
+    description: 'Agencement sur-mesure pour Table 3 Casablanca. Design gastronomique contemporain avec mobilier d\'exception et espaces conviviaux. Ambiance raffinée alliant esthétique moderne et élégance pour une expérience culinaire exceptionnelle.',
     heroImage: '/hero0.webp',
     images: [
       '/hero0.webp',
       '/projet2.webp',
       '/tall6.webp',
       '/box6.webp',
+    ],
+  },
+  {
+    id: '7',
+    slug: 'cote-sushi',
+    name: 'Côté Sushi',
+    description: 'Agencement sur-mesure pour Côté Sushi. Espace gastronomique contemporain avec mise en valeur du mobilier et ambiance conviviale.',
+    heroImage: '/uploads/cote shishi (1).jpg',
+    images: [
+      '/uploads/cote shishi (1).jpg',
+      '/uploads/cote sushi 2(1).jpg',
+      '/uploads/cote sushi 3 (1).jpg',
+    ],
+  },
+  {
+    id: '8',
+    slug: 'hotel-la-folie-barbizon',
+    name: 'Hotel La Folie Barbizon',
+    description: 'Agencement et mobilier pour Hotel La Folie Barbizon. Ambiance élégante et raffinée adaptée aux clients d\'hôtel de prestige.',
+    heroImage: '/uploads/la folie  (1).jpg',
+    images: [
+      '/uploads/la folie  (1).jpg',
+      '/uploads/la folie 2(1).jpg',
+      '/uploads/la folie 3(1).jpg',
+    ],
+  },
+  {
+    id: '9',
+    slug: 'pizi',
+    name: 'PIZI',
+    description: 'Agencement sur-mesure pour PIZI. Projet culinaire contemporain avec mobilier sur mesure et finitions haut de gamme.',
+    heroImage: '/uploads/pizi(1).jpg',
+    images: [
+      '/uploads/pizi(1).jpg',
+      '/uploads/pizi2 (1).jpg',
+      '/uploads/pizi3(1).jpg',
     ],
   },
 ];

@@ -35,7 +35,7 @@ const SavoirFaire = dynamic(() => import('@/components/SavoirFaire'), {
 })
 
 export default function Home() {
-  const featuredProjects = projects.slice(0, 6) // Use all 6 projects for 6 carousel images
+  const featuredProjects = projects.slice(0, 9) // Include new projects in carousel (up to 9 projects)
 
   return (
     <>

@@ -156,7 +156,7 @@ export async function middleware(request: NextRequest) {
     /%2e%2e/i, // URL encoded path traversal
     /<script/i, // XSS attempts
     /javascript:/i, // JavaScript protocol
-    /on\w+\s*=/i, // Event handlers
+    /\bon\w+\s*=/i, // Event handlers
   ]
 
   const urlString = pathname + request.nextUrl.search

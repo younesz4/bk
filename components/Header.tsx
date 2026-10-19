@@ -99,7 +99,7 @@ export default function Header() {
               className="absolute left-1/2 -translate-x-1/2 logo-link"
               style={{ transition: 'opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
             >
-              <div className="relative w-20 h-20">
+              <div className="relative w-24 h-24 md:w-28 md:h-28">
                 <Image
                   src="/logo-1.png"
                   alt="Logo BK Agencements"
@@ -107,7 +107,7 @@ export default function Header() {
                   className="object-contain"
                   style={{ filter: logoFilter }}
                   quality={75}
-                  sizes="80px"
+                  sizes="112px"
                   loading="lazy"
                 />
               </div>
@@ -171,7 +171,7 @@ export default function Header() {
             {/* LOGO CENTER FIXED */}
             <Link 
               href="/" 
-              className="relative w-12 h-12 logo-link"
+              className="relative w-16 h-16 logo-link"
               style={{ transition: 'opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
             >
               <Image
@@ -181,7 +181,7 @@ export default function Header() {
                 className="object-contain"
                 style={{ filter: logoFilter }}
                 quality={75}
-                sizes="48px"
+                sizes="64px"
                 loading="lazy"
               />
             </Link>

@@ -53,7 +53,7 @@ export default function LuxuryHero() {
             className="text-white mb-6 sm:mb-5 md:mb-6"
             delay={0}
           >
-            <span style={{ fontSize: 'clamp(2rem, 6vw, 5rem)' }}>BK AGENCEMENTS</span>
+            <span style={{ fontSize: 'clamp(2rem, 6vw, 5rem)' }}>Youssef Agencements</span>
           </HeroTitle>
           
           <p
